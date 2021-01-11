@@ -102,9 +102,10 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBar(
         indicatorPadding: EdgeInsets.zero,
+        indicatorSize: TabBarIndicatorSize.label,
         indicator: BoxDecoration(
           border: Border(
-            top: BorderSide(color: Colors.red, width: 3.0),
+            top: BorderSide(color: Pallete.grad1, width: 3.0),
           ),
         ),
         unselectedLabelColor: Colors.grey,

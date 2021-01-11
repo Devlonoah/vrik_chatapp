@@ -6,4 +6,7 @@ class Pallete {
   static Color darkGrey = Color(0xFF424C5E);
   static Color white = Color(0xFFAEAEAE);
   static Color scaffoldBackgroundColor = Color(0xFF1B1F29);
+
+  static Color grad1 = Color(0xFFD94958);
+  static Color grad2 = Color(0XFFD26D52);
 }
