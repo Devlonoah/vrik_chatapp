@@ -1,4 +1,6 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/fontelico_icons.dart';
 import 'package:vrik_chatapp/pages/homepage.dart/home_page.dart';
 import 'package:vrik_chatapp/pallete.dart';
 
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.pink,
         scaffoldBackgroundColor: Pallete.scaffoldBackgroundColor,
@@ -51,7 +53,7 @@ class AppHome extends StatefulWidget {
 }
 
 class _AppHomeState extends State<AppHome> {
-  List<Widget> widgets = [
+  List<Widget> screens = [
     HomePage(),
     Scaffold(),
     Scaffold(),
@@ -60,17 +62,20 @@ class _AppHomeState extends State<AppHome> {
   int selectedIndex = 0;
 
   List<IconData> icons = [
-    Icons.home,
-    Icons.book,
-    Icons.star,
-    Icons.zoom_out_map_sharp,
+    EvaIcons.home,
+    EvaIcons.trash2Outline,
+    Fontelico.emo_cry,
+    EvaIcons.settings
   ];
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        body: widgets[selectedIndex],
+        body: IndexedStack(
+          children: screens,
+          index: selectedIndex,
+        ),
         // bottomNavigationBar: BottomNavigationBar(
         //   items: [],
         // ),

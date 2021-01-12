@@ -1,11 +1,21 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:vrik_chatapp/model/user.dart';
 import 'package:vrik_chatapp/pallete.dart';
 
 Container searchbarAndHadertitle(
-    {double mqTop, double mqWidth, double mqHeight, BuildContext context}) {
+    {double mqTop,
+    double mqWidth,
+    double mqHeight,
+    BuildContext context,
+    User currentUser}) {
   return Container(
-    margin:
-        EdgeInsets.symmetric(horizontal: mqWidth * 0.03, vertical: mqTop / 4),
+    margin: EdgeInsets.only(
+      left: mqWidth * 0.03,
+      right: mqWidth * 0.03,
+      top: mqTop + 10,
+      bottom: mqHeight * 0.01,
+    ),
     height: mqHeight * 0.15,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,6 +38,9 @@ Container searchbarAndHadertitle(
               ),
               Expanded(
                 child: TextField(
+                  style: TextStyle(
+                    color: Pallete.white,
+                  ),
                   decoration: InputDecoration.collapsed(
                     hintText: 'Search',
                     hintStyle: TextStyle(
@@ -57,12 +70,10 @@ Container searchbarAndHadertitle(
               ),
             ),
             //Profile dp
-            Container(
-              height: mqHeight * 0.05,
-              width: mqWidth * 0.09,
-              decoration: BoxDecoration(
-                color: Pallete.grad1,
-                shape: BoxShape.circle,
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: CachedNetworkImageProvider(
+                currentUser.imageUrl,
               ),
             )
           ],

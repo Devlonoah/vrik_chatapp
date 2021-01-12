@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vrik_chatapp/pallete.dart';
-
+import 'package:vrik_chatapp/model/user.dart';
+import 'components/posts.dart';
 import 'components/searchbar_and_headertitle.dart';
 import 'components/stories_panel.dart';
 
@@ -19,53 +19,30 @@ class Body extends StatelessWidget {
     var mq = MediaQuery.of(context).padding.top;
     var mqHeight = MediaQuery.of(context).size.height;
     var mqWidth = MediaQuery.of(context).size.width;
-    return ListView(
-      children: [
-        searchbarAndHadertitle(
-            mqTop: mq, mqWidth: mqWidth, mqHeight: mqHeight, context: context),
-        SizedBox(height: mqHeight * 0.03),
-        StoriesPanel(),
-        SizedBox(height: mqHeight * 0.03),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: mqWidth * 0.03),
-          padding: EdgeInsets.symmetric(
-            horizontal: mqWidth * 0.02,
-            vertical: mqHeight * 0.02,
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: searchbarAndHadertitle(
+              mqTop: mq,
+              mqWidth: mqWidth,
+              mqHeight: mqHeight,
+              context: context,
+              currentUser: currentUser),
+        ),
+        SliverToBoxAdapter(
+          child: StoriesPanel(
+            story: stories,
           ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    height: mqHeight * 0.06,
-                    width: mqWidth * 0.13,
-                    decoration: BoxDecoration(
-                      color: Pallete.grad1,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  //user name and timeAgo since when added
-                  SizedBox(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Thomas Payne',
-                        style: TextStyle(
-                            color: Pallete.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                      Text(
-                        "2hours ago",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              )
-            ],
-          ),
+        ),
+        SliverPadding(padding: EdgeInsets.all(mqHeight * 0.03)),
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return PostCard(
+              mqWidth: mqWidth,
+              mqHeight: mqHeight,
+              post: posts[index],
+            );
+          }, childCount: posts.length),
         )
       ],
     );
