@@ -49,8 +49,7 @@ class Post {
 
 User currentUser = User(
   name: 'Lawal Opeyemi',
-  imageUrl:
-      'https://images.unsplash.com/photo-1578133671540-edad0b3d689e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80',
+  imageUrl: 'https://i.postimg.cc/15SQ5J3p/dp.jpg',
 );
 
 List<User> usersList = [
@@ -152,8 +151,7 @@ List<User> onlineUsers = [
           'https://images.unsplash.com/photo-1515077678510-ce3bdf418862?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=675&q=80'),
   User(
     name: 'James Lathrop',
-    imageUrl:
-        'https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=592&q=80',
+    imageUrl: 'https://i.postimg.cc/15SQ5J3p/dp.jpg',
   ),
   User(
     name: 'Jessie Samson',
@@ -170,9 +168,8 @@ final List<Story> stories = [
     isLive: true,
   ),
   Story(
-    user: onlineUsers[6],
-    imageUrl:
-        'https://images.unsplash.com/photo-1499363536502-87642509e31b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+    user: currentUser,
+    imageUrl: 'https://i.postimg.cc/15SQ5J3p/dp.jpg',
     isViewed: true,
   ),
   Story(
@@ -247,7 +244,7 @@ final List<Post> posts = [
         'If you are an infrequent traveler you may need some tips to keep the'
         'wife happy while you are jet setting around the globe.',
     timeAgo: '3hr',
-    imageUrl: null,
+    imageUrl: 'https://i.postimg.cc/15SQ5J3p/dp.jpg',
     likes: 683,
     comments: 79,
     shares: 18,
