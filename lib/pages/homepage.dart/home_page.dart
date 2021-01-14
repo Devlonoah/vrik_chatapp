@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vrik_chatapp/model/user.dart';
+import 'package:vrik_chatapp/pages/storyview/story_view_page.dart';
 import 'components/posts.dart';
 import 'components/searchbar_and_headertitle.dart';
 import 'components/stories_panel.dart';
@@ -34,14 +35,16 @@ class Body extends StatelessWidget {
             story: stories,
           ),
         ),
-        SliverPadding(padding: EdgeInsets.all(mqHeight * 0.03)),
+        SliverPadding(
+          padding: EdgeInsets.all(mqHeight * 0.01),
+        ),
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
             return PostCard(
-              mqWidth: mqWidth,
-              mqHeight: mqHeight,
-              post: posts[index],
-            );
+                mqWidth: mqWidth,
+                mqHeight: mqHeight,
+                post: posts[index],
+                index: index);
           }, childCount: posts.length),
         )
       ],

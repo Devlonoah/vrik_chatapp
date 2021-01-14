@@ -9,4 +9,7 @@ class Pallete {
 
   static Color grad1 = Color(0xFFD94958);
   static Color grad2 = Color(0XFFD26D52);
+
+  static Color night = Color(0xFF24272E);
+  static Color evening = Color(0xFF222935);
 }

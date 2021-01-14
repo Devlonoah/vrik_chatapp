@@ -2,6 +2,8 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/fontelico_icons.dart';
 import 'package:vrik_chatapp/pages/homepage.dart/home_page.dart';
+import 'package:vrik_chatapp/pages/profilepage/profile_page.dart';
+import 'package:vrik_chatapp/pages/storyview/story_view_page.dart';
 import 'package:vrik_chatapp/pallete.dart';
 
 void main() {
@@ -37,15 +39,18 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: AppHome(),
+      initialRoute: AppHome.id,
       routes: {
         HomePage.id: (context) => HomePage(),
+        StoryViewPage.id: (context) => StoryViewPage(),
+        AppHome.id: (context) => AppHome(),
       },
     );
   }
 }
 
 class AppHome extends StatefulWidget {
+  static String id = 'AppHome';
   AppHome({Key key}) : super(key: key);
 
   @override
@@ -69,6 +74,9 @@ class _AppHomeState extends State<AppHome> {
   ];
   @override
   Widget build(BuildContext context) {
+    var mqHeight = MediaQuery.of(context).size.height;
+    var mqWidth = MediaQuery.of(context).size.width;
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -80,7 +88,7 @@ class _AppHomeState extends State<AppHome> {
         //   items: [],
         // ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
+          padding: EdgeInsets.only(bottom: mqHeight * 0.01),
           child: CustomTabBar(
             icons: icons,
             selectedIndex: selectedIndex,

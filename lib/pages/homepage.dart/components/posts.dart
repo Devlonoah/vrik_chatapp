@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/fontelico_icons.dart';
+
 import 'package:vrik_chatapp/model/user.dart';
 import 'package:vrik_chatapp/pallete.dart';
 
@@ -13,15 +14,22 @@ class PostCard extends StatelessWidget {
     @required this.mqWidth,
     @required this.mqHeight,
     this.post,
+    this.index,
   }) : super(key: key);
 
   final double mqWidth;
   final double mqHeight;
   final Post post;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: mqWidth * 0.03, vertical: 10),
+      margin: EdgeInsets.only(
+        top: mqWidth * 0.03,
+        left: mqHeight * 0.01,
+        right: mqHeight * 0.01,
+        bottom: post == posts.last ? mqHeight * 0.05 : mqHeight * 0.02,
+      ),
       padding: EdgeInsets.symmetric(
         horizontal: mqWidth * 0.035,
         vertical: mqHeight * 0.02,
@@ -66,10 +74,13 @@ class PostCard extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl: post.imageUrl,
                       progressIndicatorBuilder: (context, url, progress) {
-                        return Center(child: CupertinoActivityIndicator());
+                        return Container(
+                            height: mqHeight * 0.2,
+                            child: Center(child: CircularProgressIndicator()));
                       },
-                      errorWidget: (context, url, error) =>
-                          Icon(Fontelico.emo_cry),
+                      errorWidget: (context, url, error) => Icon(
+                          Fontelico.emo_cry,
+                          color: Pallete.primaryColorOne),
                       width: double.infinity,
                       fit: BoxFit.scaleDown,
                     ),
@@ -212,10 +223,6 @@ class PostHeader extends StatelessWidget {
             ],
           ),
         ),
-        Icon(
-          Icons.more_horiz,
-          color: Colors.white,
-        )
       ],
     );
   }
@@ -366,8 +373,8 @@ Widget userThatComment(List<User> noUserThatComment) {
           Positioned(
             right: 48,
             child: Icon(
-              EvaIcons.plus,
-              color: Pallete.white,
+              Icons.add,
+              color: Pallete.primaryColorOne,
             ),
           ),
         ],

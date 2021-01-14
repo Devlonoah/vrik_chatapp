@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/fontelico_icons.dart';
 
 import 'package:vrik_chatapp/model/user.dart';
+import 'package:vrik_chatapp/pages/storyview/story_view_page.dart';
 import 'package:vrik_chatapp/pallete.dart';
 
 class StoriesPanel extends StatelessWidget {
@@ -17,7 +19,8 @@ class StoriesPanel extends StatelessWidget {
     var mqHeight = MediaQuery.of(context).size.height;
     var mqWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: mqHeight * 0.4,
+      alignment: Alignment.center,
+      height: mqHeight * 0.45,
       width: double.infinity,
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
@@ -29,10 +32,19 @@ class StoriesPanel extends StatelessWidget {
           //   return CircleAvatar();
           // }
 
-          return StoryCard(
-            mqWidth: mqWidth,
-            mqHeight: mqHeight,
-            story: story,
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return StoryViewPage();
+                },
+              ));
+            },
+            child: StoryCard(
+              mqWidth: mqWidth,
+              mqHeight: mqHeight,
+              story: story,
+            ),
           );
         },
       ),
@@ -65,7 +77,7 @@ class StoryCard extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               width: mqWidth * 0.42,
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Pallete.evening,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Stack(
@@ -74,6 +86,16 @@ class StoryCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     child: CachedNetworkImage(
                       imageUrl: story.imageUrl,
+                      progressIndicatorBuilder: (context, url, progress) =>
+                          Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      errorWidget: (context, url, error) => Center(
+                        child: Icon(
+                          Fontelico.spin1,
+                          color: Pallete.primaryColorOne,
+                        ),
+                      ),
                       height: mqHeight * 0.3,
                       width: mqWidth * 0.42,
                       fit: BoxFit.cover,
